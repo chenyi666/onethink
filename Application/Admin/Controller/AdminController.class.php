@@ -236,6 +236,7 @@ class AdminController extends Controller {
      */
     final public function getMenus($controller=CONTROLLER_NAME){
         $menus  =   session('ADMIN_MENU_LIST.'.$controller);
+
         if(empty($menus)){
             // 获取主菜单
             $where['pid']   =   0;
@@ -251,13 +252,14 @@ class AdminController extends Controller {
                     unset($menus['main'][$key]);
                     continue;//继续循环
                 }
+
                 if(strtolower(CONTROLLER_NAME.'/'.ACTION_NAME)  == strtolower($item['url'])){
                     $menus['main'][$key]['class']='current';
                 }
             }
 
             // 查找当前子菜单
-            $pid = M('Menu')->where("pid !=0 AND url like '%{$controller}/".ACTION_NAME."%'")->getField('pid');
+            $pid = M('Menu')->where("pid !=0 AND url like '{$controller}/".ACTION_NAME."%'")->getField('pid');
             if($pid){
                 // 查找当前主菜单
                 $nav =  M('Menu')->find($pid);
@@ -316,7 +318,9 @@ class AdminController extends Controller {
             }
             session('ADMIN_MENU_LIST.'.$controller,$menus);
         }
+     /*  var_dump($menus);exit;*/
         return $menus;
+
     }
 
     /**

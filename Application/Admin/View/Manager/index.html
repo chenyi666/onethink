@@ -2,7 +2,7 @@
 
 <block name="body">
     <div class="main-title">
-        <h2><present name="data">[ {$data.title} ] 子</present>报修管理 </h2>
+        <h2><present name="data">[ {$data.title} ] 子</present>菜单管理 </h2>
     </div>
 
     <div class="cf">
@@ -27,43 +27,31 @@
                         <th class="row-selected">
                             <input class="checkbox check-all" type="checkbox">
                         </th>
-                        <th>ID</th>
-                        <th>名称</th>
-                        <th>上级菜单</th>
-                        <th>分组</th>
-                        <th>URL</th>
-                        <th>排序</th>
-                        <th>仅开发者模式显示</th>
-                        <th>隐藏</th>
+                        <th>报修编号</th>
+                        <th>报修人</th>
+                        <th>电话</th>
+                        <th>地址</th>
+                        <th>问题</th>
+                        <th>报修时间</th>
+                        <th>状态</th>
                         <th>操作</th>
                     </tr>
                 </thead>
                 <tbody>
-				<notempty name="list">
-                <volist name="list" id="menu">
+				<notempty name="manager">
+                <volist name="manager" id="manager">
                     <tr>
-                        <td><input class="ids row-selected" type="checkbox" name="id[]" value="{$menu.id}"></td>
-                        <td>{$menu.id}</td>
+                        <td><input class="ids row-selected" type="checkbox" name="id[]" value="{$manager.id}"></td>
+                        <td>{$manager.sn}</td>
+                        <td>{$manager.name}</td>
+                        <td>{$manager.tel}</td>
+                        <td>{$manager.address}</td>
+                        <td>{$manager.intro}</td>
+                        <td>{$manager.inputtime|date='Y-m-d',###}</td>
+                        <td>{$manager['status']==0?'已处理':'受理中'}</td>
                         <td>
-                            <a href="{:U('index?pid='.$menu['id'])}">{$menu.title}</a>
-                        </td>
-                        <td>{$menu.up_title|default='无'}</td>
-                        <td>{$menu.group}</td>
-                        <td>{$menu.url}</td>
-                        <td>{$menu.sort}</td>
-                        <td>
-                            <a href="{:U('toogleDev',array('id'=>$menu['id'],'value'=>abs($menu['is_dev']-1)))}" class="ajax-get">
-                            {$menu.is_dev_text}
-                            </a>
-                        </td>
-                        <td>
-                            <a href="{:U('toogleHide',array('id'=>$menu['id'],'value'=>abs($menu['hide']-1)))}" class="ajax-get">
-                            {$menu.hide_text}
-                            </a>
-                        </td>
-                        <td>
-                            <a title="编辑" href="{:U('edit?id='.$menu['id'])}">编辑</a>
-                            <a class="confirm ajax-get" title="删除" href="{:U('del?id='.$menu['id'])}">删除</a>
+                            <a title="编辑" href="{:U('edit?id='.$manager['id'])}">编辑</a>
+                            <a class="confirm ajax-get" title="删除" href="{:U('del?id='.$manager['id'])}">删除</a>
                         </td>
                     </tr>
                 </volist>

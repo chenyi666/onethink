@@ -56,6 +56,7 @@ class MenuController extends AdminController {
         if(IS_POST){
             $Menu = D('Menu');
             $data = $Menu->create();
+
             if($data){
                 $id = $Menu->add();
                 if($id){
