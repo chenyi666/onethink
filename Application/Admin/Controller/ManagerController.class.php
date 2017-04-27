@@ -9,11 +9,15 @@
 namespace Admin\Controller;
 
 
+use Think\Page;
+
 class ManagerController extends AdminController
 {
     public function index(){
-
-        $manager = M('Manager')->select();
+        $count=M('Manager')->count();
+        $page=new Page($count,1);
+        $manager = M('Manager')->limit($page->firstRow.','.$page->listRows)->select();
+        $this->assign('page',$page->show());
         $this->assign('manager', $manager);
         $this->meta_title = '导航管理';
         $this->display();

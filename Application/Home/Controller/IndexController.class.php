@@ -29,5 +29,32 @@ class IndexController extends HomeController {
                  
         $this->display();
     }
+    //小区通知显示
+    public function notice(){
+        $notices=D('Document')->select();
+        foreach ($notices as $key=>$notice){
+            //获取图片数据
+            $img=D('Picture')->where(['id'=>$notice['cover_id']])->select();
+/*            $content=D('Document_article')->where(['id'=>$notice['id']])->select();
+            $notices[$key]['content']=$content[0]['content'];*/
+            $notices[$key]['img']=$img[0]['path'];
+        }
+
+        //分配数据
+        $this->assign('notices',$notices);
+/*        $this->assign('imgs',$imgs);*/
+        $this->display('notice');
+    }
+    public function detail($id){
+        //根据id查询详情
+        $content=D('Document_article')->find($id);
+        $notice=D('Document')->find($id);
+       //分配数据
+        $this->assign('notice',$notice);
+        $this->assign('content',$content);
+        //展示视图
+        $this->display('notice-detail');
+
+    }
 
 }
