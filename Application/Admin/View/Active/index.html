@@ -2,7 +2,7 @@
 
 <block name="body">
     <div class="main-title">
-        <h2><present name="data">[ {$data.title} ] 子</present>菜单管理 </h2>
+        <h2><present name="data">[ {$data.title} ] 子</present>活动管理 </h2>
     </div>
 
     <div class="cf">
@@ -27,31 +27,23 @@
                         <th class="row-selected">
                             <input class="checkbox check-all" type="checkbox">
                         </th>
-                        <th>报修编号</th>
-                        <th>报修人</th>
-                        <th>电话</th>
-                        <th>地址</th>
-                        <th>问题</th>
-                        <th>报修时间</th>
+                        <th>报名人</th>
+                        <th>活动标题</th>
                         <th>状态</th>
                         <th>操作</th>
                     </tr>
                 </thead>
                 <tbody>
-				<notempty name="manager">
-                <volist name="manager" id="manager">
+				<notempty name="actives">
+                <volist name="actives" id="active">
                     <tr>
-                        <td><input class="ids row-selected" type="checkbox" name="id[]" value="{$manager.id}"></td>
-                        <td>{$manager.sn}</td>
-                        <td>{$manager.name}</td>
-                        <td>{$manager.tel}</td>
-                        <td>{$manager.address}</td>
-                        <td>{$manager.intro}</td>
-                        <td>{$manager.inputtime|date='Y-m-d',###}</td>
-                        <td>{$manager['status']==0?'已处理':'受理中'}</td>
+                        <td><input class="ids row-selected" type="checkbox" name="id[]" value="{$active.id}"></td>
+                        <td>{$active.name}</td>
+                        <td>{$active.title}</td>
+                        <td>{$active['status']==0?'未审核':'审核通过'}</td>
                         <td>
-                            <a title="编辑" href="{:U('edit?id='.$manager['id'])}">编辑</a>
-                            <a class="confirm ajax-get" title="删除" href="{:U('del?id='.$manager['id'])}">删除</a>
+                            <input type="submit" value="审核" class="btn btn-info" id="auditing">
+                            <input type="submit" value="不通过审核" class="btn btn-info">
                         </td>
                     </tr>
                 </volist>
@@ -114,6 +106,8 @@
         			window.location.href = url + '/ids/' + param;
         		}
         	});
+        	//点击审核
+
         });
     </script>
 </block>
