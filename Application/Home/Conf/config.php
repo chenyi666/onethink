@@ -96,9 +96,7 @@ return array(
         'callback' => false, //检测文件是否存在回调函数，如果存在返回文件信息数组
     ), //附件上传配置（文件上传类配置）
     'wechat'=>[
-        'adminEmail' => 'admin@example.com',
-        'adminPicUrl'=>'http://admin.yiishop.com/',
-        'wechat'=>[
+
             /**
              * Debug 模式，bool 值：true/false
              *
@@ -108,10 +106,10 @@ return array(
             /**
              * 账号基本信息，请从微信公众平台/开放平台获取
              */
-            'app_id'  => 'wx4cdf13aedac0a9b1',         // AppID
-            'secret'  => 'a82c403a2cdbccf0d6f51b081828421c',     // AppSecret
-            'token'   => 'itsource',          // Token
-            'aes_key' => 'itsource',                    // EncodingAESKey，安全模式下请一定要填写！！！
+            'app_id'  => 'wxab9d4ac9748ec868',         // AppID
+            'secret'  => 'f8ec7e1bc4ec1bbbc345f74f0278e56b',     // AppSecret
+            'token'   => 'chenyi',          // Token
+            'aes_key' => 'chenyi',                    // EncodingAESKey，安全模式下请一定要填写！！！
             /**
              * 日志配置
              *
@@ -133,7 +131,7 @@ return array(
              */
             'oauth' => [
                 'scopes'   => ['snsapi_userinfo'],
-                'callback' => '/examples/oauth_callback.php',
+                'callback' =>'onethink/onethink/Home/Wechat/callback',
             ],
             /**
              * 微信支付
@@ -159,5 +157,5 @@ return array(
             ],
 
         ]
-    ],
+
 );

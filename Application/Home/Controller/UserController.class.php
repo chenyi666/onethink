@@ -68,6 +68,9 @@ class UserController extends HomeController {
 				$Member = D('Member');
 				if($Member->login($uid)){ //登录用户
 					//TODO:跳转到登录前页面
+                    if(session('openid')){
+                        $Member->where(['uid'=>$uid])->setField(['openid'=>session('openid')]);;
+                    }
 					$this->success('登录成功！',U('Home/Index/index'));
 				} else {
 					$this->error($Member->getError());
