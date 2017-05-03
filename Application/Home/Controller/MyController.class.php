@@ -12,7 +12,13 @@ namespace Home\Controller;
 class MyController extends HomeController
 {
     public function index(){
+        if(!$this->login()){
+            //判断用户是否登录，查询用户的信息，分配到视图
+            $uid=
 
-        $this->display('index');
+            $this->display('index');
+
+        }
+
     }
 }
