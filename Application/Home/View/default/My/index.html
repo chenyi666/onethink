@@ -50,16 +50,17 @@
                 <img src="__ONETHINK__/image/5.png" width="60" height="60" />
             </div>
             <div class="col-xs-9">
-                ZhangSan<br/>
+                {$nickname}<br/>
                 北大花园小区<br/>
-                积分:<span class="text-danger">100</span>
+                积分:<span class="text-danger" id="score">{$score}</span>
             </div>
+            <input type="button" value="签到"  class="btn btn-info" id="sign">
         </div>
         <div class="blank"></div>
         <div class="row text-center myLabel">
             <div class="col-xs-4 label-danger"><a href="#"><span class="iconfont">&#xe60b;</span>我的资料</a></div>
-            <div class="col-xs-4 label-success"><a href="#"><span class="iconfont">&#xe609;</span>我的报修</a></div>
-            <div class="col-xs-4 label-primary"><a href="#"><span class="iconfont">&#xe606;</span>报名的活动</a></div>
+            <div class="col-xs-4 label-success"><a href="{:U('my/repair')}"><span class="iconfont">&#xe609;</span>我的报修</a></div>
+            <div class="col-xs-4 label-primary"><a href="{:U('my/actives')}"><span class="iconfont">&#xe606;</span>报名的活动</a></div>
         </div>
         <div class="blank"></div>
         <div>
@@ -76,4 +77,18 @@
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="__ONETHINK__/bootstrap/js/bootstrap.min.js"></script>
 </body>
+<script type="application/javascript">
+    $(function(){
+     $("#sign").click(function () {
+         $.post("{:U('my/sign')}",function (data) {
+            if(data.status==0){
+                alert(data.info);
+            }else{
+               alert('签到成功')
+                $("#score").text(data.info)
+            }
+         })
+     })
+    });
+</script>
 </html>

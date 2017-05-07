@@ -89,27 +89,7 @@ class IndexController extends HomeController {
     public function active(){
         //查询当前页的数据
         $document = D("Document");
-
-//        $list = $document->lists('40');
-//        var_dump($list);
-//        $page = I('p',1);
-//        $start = ($page-1)*C('LIST_ROWS');
-//        $list = $document->where(['category_id'=>40])->limit($start.','.C('LIST_ROWS'))->select();
-
-
-//        var_dump($document->getLastSql());
-//        var_dump($list);
-        //分配到视图
-
-        /**
-         * TP中分页类
-         */
-//        $count = $document->where(['category_id'=>40])->count();
-//        $page = new Page($count,C('LIST_ROWS'));
-//        $pageHtml = $page->show();
-
-
-        $list = $document->where(['category_id'=>42,'deadline>'.time().''])->page(I('p',1),C('LIST_ROWS'))->select();
+        $list = $document->where(['category_id'=>41,'deadline>'.time().''])->page(I('p',1),C('LIST_ROWS'))->select();
         //选择视图
 
         foreach($list as &$v){

@@ -124,7 +124,7 @@
                         <td><?php echo ($active["title"]); ?></td>
                         <td><?php echo ($active['status']==0?'未审核':'审核通过'); ?></td>
                         <td>
-                            <input type="submit" value="审核" class="btn btn-info" id="">
+                            <input type="submit" value="审核" class="btn btn-info" id="auditing">
                             <input type="submit" value="不通过审核" class="btn btn-info">
                         </td>
                     </tr><?php endforeach; endif; else: echo "" ;endif; ?>
